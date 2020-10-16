@@ -1,0 +1,49 @@
+<h1 class="page-header">Edit Your Account</h1>
+
+
+<form action="/account/edit" method="POST" class="form" 
+  data-validate='[
+    {
+      "input": "#name",
+      "error": "#name-error",
+      "errorMessage": "Please fill out this field",
+      "min": 8,
+      "max": 20,
+      "minMaxMessage": "Name must be between 8 and 20 characters"
+    },
+    {
+      "input": "#email",
+      "error": "#email-error",
+      "errorMessage": "Please fill out this field",
+      "type": "email"
+    }
+  ]' novalidate>
+  
+
+  <div class="form-group">
+    <label class="form-label" for="name">Name</label>
+    <input class="form-control" type="text" value="<%= locals.values.name %>" name="name" id="name">
+    <p class="form-error" id="name-error"></p>
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label" for="email">Email</label>
+    <input class="form-control" type="email" value="<%= locals.values.email %>" name="email" id="email">
+    <p class="form-error" id="email-error"></p>
+  </div>
+
+  
+  
+  <% if (locals.error != null && locals.error != '') { %>
+    <h4 class="form-title-error"><%= locals.error %></h4>
+    <% } %>
+    
+    <p class="form-bottom-link"><a href="/account/reset-password">Reset Password</a></p>
+    <button type="submit" class="btn btn-primary form-submit-button">Confirm</button>
+    <!-- <div class="form-group">
+      <label for="profile-picture">Profile Picture</label>
+      <input type="file" name="profilePicture" id="profile-picture">
+    </div> -->
+    
+    
+</form>

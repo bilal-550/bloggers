@@ -1,0 +1,42 @@
+<% if (locals.blog == null) {
+  locals.blog = {}
+} %>
+
+
+<h2 class="page-header">Create a Blog</h2>
+
+<form action="/blogs/create" method="POST" class="form" data-validate='[
+  {
+    "input": "#title",
+    "error": "#title-error",
+    "errorMessage": "Please fill out this field",
+    "min": 8,
+    "max": 40,
+    "minMaxMessage": "The title must be between 8 and 20 characters"
+  },
+  {
+    "input": "#description",
+    "error": "#description-error",
+    "errorMessage": "Please fill out this field",
+    "min": 10,
+    "max": 100,
+    "minMaxMessage": "The Description must be between 10 and 100 characters"
+  },
+  {
+    "input": "#body",
+    "error": "#body-error",
+    "errorMessage": "Please fill out this field",
+    "min": 30,
+    "max": 5000,
+    "minMaxMessage": "The body must be between 30 and 5000 characters"
+  }
+]' novalidate>
+  <%- include('_form_fields') %>
+  <button type="submit" class="btn btn-primary form-submit-button">Create</button>
+</form>
+
+<%- include('_body_modal')  %>
+
+
+
+<%- include('../partials/errorMessage') %>

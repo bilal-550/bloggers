@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label for="title" class="form-label">Title</label>
+  <input class="form-control" type="text" name="title" id="title" required value="<%= blog.title %>">
+  <p class="form-error" id="title-error"></p>
+</div>
+<div class="form-group">
+  <label for="description" class="form-label">Description</label>
+  <input class="form-control" type="text" name="description" id="description" required value="<%= blog.description %>">
+  <p class="form-error" id="description-error"></p>
+</div>
+<div class="form-group form-group-textarea">
+  <div class="expand-container">
+    <label for="body" class="form-label">Body</label>
+    <div class="expand" id="expand-body-button" role="button" tabindex="0">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M10,21V19H6.41L10.91,14.5L9.5,13.09L5,17.59V14H3V21H10M14.5,10.91L19,6.41V10H21V3H14V5H17.59L13.09,9.5L14.5,10.91Z" />
+      </svg>
+    </div>
+  </div>
+  <textarea class="form-control form-textarea" style="height: 160px;" type="text" name="blog_body" id="body" required><%= blog.body %></textarea>
+  <p class="form-error" id="body-error"></p>
+</div>
+
+
+
+<script src="/scripts/expand.js" defer></script>

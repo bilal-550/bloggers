@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'shared/header.css';
+@import 'shared/buttons.css';
+@import 'shared/blogs.css';
+@import 'shared/footer.css';
+@import 'shared/forms.css';
+@import 'shared/modals.css';
+@import 'shared/account.css';
+
+
+:root {
+  --primary-color: darkblue;
+  --primary-color-hover: mediumblue;
+  --danger-color: #A40606;
+  --danger-color-hover: #C1292E;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Libre Baskerville', serif;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+ul {
+  list-style: none;
+}
+
+.brand-name {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+  font-style: italic; 
+  letter-spacing: 2.4px;
+}
+
+.brand-name:hover, .brand-name:focus {
+  color: var(--primary-color);
+}
+ 
+.capitalize {
+  text-transform: capitalize;
+}
+
+.page-header {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.letter-spacing {
+  letter-spacing: 1.6px;
+}
+
+.lead {
+  font-size: 1.3rem;
+  margin: 0 20px;
+}
+
+hr {
+  margin: 2rem;
+  border: none;
+  border-top: 1px solid grey;
+}
+
+main.page-notFound-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page-notFound-header {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.page-notFound-header a {
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  font-size: 2.5rem;
+}
+
+.page-notFound-header a:hover, .page-notFound-header a:focus {
+  color:  rgb(0, 81, 210);
+}
+
+.centered-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

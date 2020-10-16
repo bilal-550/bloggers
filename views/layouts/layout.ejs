@@ -1,0 +1,30 @@
+<%
+
+let notFoundClass = '';
+if (locals.notFound) {
+  notFoundClass = 'page-notFound-container'
+}
+
+%> 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <script src="/scripts/main.js" defer></script>
+  <script src="/scripts/validation.js" defer></script>
+</head>
+
+<body>
+  <%- include('../partials/header') %>
+  <main class="<%= notFoundClass %>">
+    <%- body %>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<div class="blog-page">
+
+  <h2 class="page-header"><%= blog.title %></h2>
+  <h4 class="blog-createdAt"><time><%= blog.getCreatedAtDate %></time></h4>
+  <p class="blog-body"><%= blog.body %></p>
+
+  <hr>
+  <div class="blog-buttons">
+    <form class="blog-button-container" action="/blogs/<%= blog.id %>/<%= blog.stringId %>?_method=delete" method="POST">
+      <button type="submit" class="btn btn-danger">DELETE</button>
+    </form>
+    <div class="blog-button-container">
+      <button data-href="/blogs/<%= blog.id %>/<%= blog.stringId %>/edit" class="btn btn-primary">Edit</button>
+    </div>
+  </div>
+</div>

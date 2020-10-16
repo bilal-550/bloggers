@@ -1,0 +1,31 @@
+<%
+
+let accountText = 'My Account', accountHref = '/account'
+if (user == null) {
+  accountText = 'Login'
+  accountHref = '/login'
+} 
+
+%>
+
+<header class="header">
+  <div class="header-logo brand-name">
+    <a href="/">Bloggers</a>
+  </div>
+  <nav class="header-nav" id="nav">
+    <ul class="header-nav-list">
+      <li><a href="/">Blogs</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/blogs/create">Create</a></li>
+      <li><a href="<%= accountHref %>"><%= accountText %></a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggler" tabindex="0" id="nav-toggler">
+    <svg class="nav-toggler-closed" style="width:40px;height:40px" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+    </svg>
+    <svg class="nav-toggler-opened" style="width:40px;height:40px" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z" />
+    </svg>
+  </button>
+</header>

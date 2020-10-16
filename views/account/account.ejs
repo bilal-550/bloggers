@@ -1,0 +1,30 @@
+<h1 class="page-header">My Account</h1>
+
+<div class="info-container">
+  <div class="info">
+    <h2 class="info-title">Personal Info</h2>
+    <table class="info-table">
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td><%= user.name %></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= user.email %></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" value="123456" readonly class="input-clear"></td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-primary info-button" href="/account/edit">Edit</a>
+  </div>    
+  <div class="info">
+    <form class="centered-flex" action="/account/logout?_method=DELETE" method="POST">
+      <button type="submit" class="btn btn-danger logout-button">Logout</button>
+    </form>
+  </div>
+</div>
+
