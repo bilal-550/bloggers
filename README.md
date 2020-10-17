@@ -7,4 +7,4 @@ It contains:
   - Blog created/edit/views
   - Login System
   
-Currently *Unfinished* :grinning:
+Currently *Unfinished*
