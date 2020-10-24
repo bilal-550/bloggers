@@ -8,8 +8,9 @@
   border-bottom: black 1px solid;
 }
 
-.header-logo {
-  font-size: 2rem
+
+.header-logo a {
+  font-size: 2rem !important
 }
 
 .nav-toggler:hover, .nav-toggler:focus, .header-logo:hover, .header-logo a:focus, .header-nav-list li a:hover, .header-nav-list li a:focus {
@@ -29,6 +30,7 @@
 }
 
 .nav-toggler {
+  background: none;
   display: none;
 }
 

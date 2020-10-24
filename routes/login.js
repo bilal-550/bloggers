@@ -1,7 +1,10 @@
 const express = require('express');
-const passport = require('passport')
+const passport = require('passport');
+const isNotAutheticated = require('../config/auth').isNotAutheticated
 
-const router = express.Router()
+const router = express.Router();
+
+router.use(isNotAutheticated)
 
 router.get('/', (req, res) => {
   res.render('account/login', { title: 'Login - Bloggers', user: req.user })

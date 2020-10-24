@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV != 'production') {
+  require('dotenv').config();
+}
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose');
@@ -10,8 +14,8 @@ const passportInit = require('./config/passport');
 
 passportInit(passport);
 
-const DATABASE_URI = 'mongodb://localhost/bloggers';
-const SESSION_SECRET = 'SUPER_SUPER_SUPER_SECRET_KEY';
+const DATABASE_URI = process.env.DATABASE_URI;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -22,7 +26,7 @@ app.use(expressLayouts);
 app.use(methodOverride('_method'));
 
 app.use(session({
-  secret: 'secret',
+  secret: SESSION_SECRET,
   resave: true,
   saveUninitialized: true
 }))
@@ -54,9 +58,15 @@ app.use('/account', require('./routes/account'));
 app.use('/login', require('./routes/login'));
 app.use('/signup', require('./routes/signup'));
 app.use('/account', require('./routes/account'));
+app.use('/verify', require('./routes/verify'));
+app.use('/reset-password', require('./routes/resetPassword'));
+
+app.post('/fetch', (req, res) => {
+  res.json({ email: req.body.email })
+})
 
 app.use((req, res) => {
-  res.status(404).render('404', { title: 'Page Not Found - Bloggers', notFound: true, user: req.user })
+  res.status(404).render('404', { title: 'Page Not Found - Bloggers', centered: true, user: req.user })
 })
 
 app.listen(3000)

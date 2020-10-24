@@ -1,0 +1,33 @@
+<h1 class="page-header">Verifying</h1>
+
+
+<% if (locals.invalidToken) { %>
+  <h3 style="background-color: darkred; color: white; padding: 1rem; text-align: center;">
+     Invalid Token - Redirecting in <span data-closed-after="5" data-current-time="5" id="page-closed-after">5</span> Seconds
+  </h3>
+<% } %>
+
+<script>
+  const pageClosedAfter = document.getElementById('page-closed-after');
+
+  if (pageClosedAfter) {
+    const changeText = () => {
+      pageClosedAfter.dataset.currentTime--;
+      pageClosedAfter.innerText = pageClosedAfter.dataset.currentTime
+    }
+    const closedAfterDuration = pageClosedAfter.dataset.closedAfter * 1000
+    console.log(closedAfterDuration);
+    setInterval(changeText, 1000)
+    setTimeout(() => {
+      window.location.replace('/');
+    }, 5000);
+  } else {
+    fetch('/verify', {
+      method: 'POST'
+    }).then(data => {
+      if (data.redirected) {
+        window.location.replace('/account');
+      }
+    })
+  }
+</script>

@@ -1,7 +1,7 @@
 <h1 class="page-header">Edit Your Account</h1>
 
 
-<form action="/account/edit" method="POST" class="form" 
+<form action="/account?_method=PUT" method="POST" class="form" 
   data-validate='[
     {
       "input": "#name",
@@ -38,12 +38,29 @@
     <h4 class="form-title-error"><%= locals.error %></h4>
     <% } %>
     
-    <p class="form-bottom-link"><a href="/account/reset-password">Reset Password</a></p>
+    <p class="form-title-error"><%= locals.error %></p>
+    
     <button type="submit" class="btn btn-primary form-submit-button">Confirm</button>
     <!-- <div class="form-group">
       <label for="profile-picture">Profile Picture</label>
       <input type="file" name="profilePicture" id="profile-picture">
-    </div> -->
-    
+    </div> -->    
     
 </form>
+
+<div class="centered-flex">
+    <button class="link reset-password" id="reset-password">Reset Password</button>
+</div>
+
+<script>
+  document.getElementById('reset-password').addEventListener('click', function () {
+    fetch('/account/reset-password', {
+      method: 'POST'
+    }).then(() => {
+      this.innerText = 'Email sent. Click to send again.'
+    }).catch(err => {
+      console.error(err);
+      this.innerText = 'Error sending. Click to try again.'
+    })
+  })
+</script>

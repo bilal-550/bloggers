@@ -1,9 +1,10 @@
 <%
 
-let notFoundClass = '';
-if (locals.notFound) {
-  notFoundClass = 'page-notFound-container'
+let centeredClass = '';
+if (locals.centered) {
+  centeredClass = 'centered-flex'
 }
+
 
 %> 
 
@@ -17,11 +18,16 @@ if (locals.notFound) {
   <link rel="stylesheet" href="/styles/main.css">
   <script src="/scripts/main.js" defer></script>
   <script src="/scripts/validation.js" defer></script>
+  <% if (locals.stylesheets) { %>
+    <% stylesheets.forEach(stylesheet => { %> 
+      <link href="<%= stylesheet %>" rel="stylesheet">
+    <% }) %>
+  <% } %>
 </head>
 
 <body>
   <%- include('../partials/header') %>
-  <main class="<%= notFoundClass %>">
+  <main class="<%= centeredClass %>">
     <%- body %>
   </main>
   <%- include('../partials/footer') %>

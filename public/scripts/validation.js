@@ -38,7 +38,8 @@ const validation = {
   },
 
   minmax({ min, max }, { length }) {
-    if (length > min && max > length) return true;
+    if (max === Infinity) return true;
+    else if (length > min && max >= length) return true;
     return false
   },
 

@@ -1,9 +1,10 @@
 const express = require('express');
 const Blog = require('../models/blog');
 const router = express.Router();
+const isAutheticated = require('../config/auth').isAuthenticated
 
 function createStringId(string) {
-  const specialCharacters = ['?', '/', '-', '*', '&', '%', '#', '$', '@', '!', '[', ']', '{', '}', ',', '\\']
+  const specialCharacters = ['?', '/', '-', '*', '&', '%', '#', '$', '@', '!', '[', ']', '{', '}', ',', '\\', '(', ')', '^', '_', '<', '>', '.', '`', '~']
   let processedString = string;
   specialCharacters.forEach(char => {
     const regex = new RegExp('\\' + char, 'gi');
@@ -20,15 +21,19 @@ router.get('/', async (req, res) => {
     blogs = [];
     var errorMessage = 'An error occured. Please try again later.';
   }
-  res.render('blogs/index', { blogs, errorMessage, title: 'Bloggers - Home', user: req.user });
+  res.render('blogs/index', { blogs, errorMessage, title: 'Bloggers - Home', user: req.user, stylesheets: ['/styles/blogs.css'] });
 
 })
 
-router.get('/create', (req, res) => {
-  res.render('blogs/create', { title: 'Create a Blog', user: req.user });
+router.get('/create', isAutheticated, (req, res) => {
+  let centered = false;
+  if (!req.user.verified) {
+    centered = true
+  }
+  res.render('blogs/create', { title: 'Create a Blog', user: req.user, centered: centered });
 })
 
-router.post('/create', async (req, res) => {
+router.post('/create', isAutheticated, async (req, res) => {
   const { title, description, blog_body: body } = req.body
   const stringId = createStringId(title);
   const blog = new Blog({
@@ -53,10 +58,13 @@ router.get('/:id/:title', async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     if (blog == null) {
-      res.render('404', { title: 'Bloggers - Blog Not Found' });
+      res.render('404', { title: 'Bloggers - Blog Not Found', user: req.user, centered: true });
       return;
-    };
-    res.render('blogs/view', { blog, title: `View ${blog.title}`, user: req.user })
+    } else if (blog.stringId !== req.params.title) {
+      res.redirect(`/blogs/${blog._id}/${blog.stringId}`);
+      return;
+    }
+    res.render('blogs/view', { blog, title: `View ${blog.title}`, user: req.user, stylesheets: ['/styles/blogs.css'] })
   } catch (err) {
     console.error(err);
   }

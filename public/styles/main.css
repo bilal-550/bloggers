@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 @import 'shared/header.css';
 @import 'shared/buttons.css';
-@import 'shared/blogs.css';
 @import 'shared/footer.css';
 @import 'shared/forms.css';
 @import 'shared/modals.css';
-@import 'shared/account.css';
 
 
 :root {
@@ -13,6 +11,8 @@
   --primary-color-hover: mediumblue;
   --danger-color: #A40606;
   --danger-color-hover: #C1292E;
+  --success-color: green;
+  --success-color-hover:  rgb(4, 163, 4);
 }
 
 * {
@@ -35,6 +35,18 @@ ul {
   list-style: none;
 }
 
+.link {
+  color: darkblue;
+  background: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.link:hover, .link:focus {
+  color: mediumblue;
+  text-decoration: underline;
+}
+
 .brand-name {
   font-weight: bold;
   color: inherit;
@@ -44,7 +56,8 @@ ul {
 }
 
 .brand-name:hover, .brand-name:focus {
-  color: var(--primary-color);
+  text-decoration: none !important;
+  color: var(--primary-color) !important;
 }
  
 .capitalize {
@@ -71,30 +84,28 @@ hr {
   border-top: 1px solid grey;
 }
 
-main.page-notFound-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.page-notFound-header {
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.page-notFound-header a {
+main.centered-flex .page-header a {
+  display: block;
   color: rgb(0, 81, 255);
   text-decoration: none;
   font-size: 2.5rem;
 }
 
-.page-notFound-header a:hover, .page-notFound-header a:focus {
+main.centered-flex .page-header a:hover, main.centered-flex .page-header a:focus {
   color:  rgb(0, 81, 210);
+}
+
+main.centered-flex .page-header {
+  font-size: 3rem;
 }
 
 .centered-flex {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+*:not(input):not(svg):not(svg *):empty {
+  display: none;
 }

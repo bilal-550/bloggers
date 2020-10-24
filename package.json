@@ -1,9 +1,10 @@
 {
-  "name": "blogs",
+  "name": "bloggers",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@sendgrid/mail": "^7.3.0",
     "bcrypt": "^5.0.0",
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.5",
@@ -17,7 +18,9 @@
     "shortid": "^2.2.15",
     "validator": "^13.1.17"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  },
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js"

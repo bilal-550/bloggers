@@ -1,23 +1,18 @@
-<%
-
-let accountText = 'My Account', accountHref = '/account'
-if (user == null) {
-  accountText = 'Login'
-  accountHref = '/login'
-} 
-
-%>
-
 <header class="header">
-  <div class="header-logo brand-name">
-    <a href="/">Bloggers</a>
+  <div class="header-logo">
+    <a href="/" class="brand-name">Bloggers</a>
   </div>
   <nav class="header-nav" id="nav">
     <ul class="header-nav-list">
       <li><a href="/">Blogs</a></li>
       <li><a href="/about">About</a></li>
-      <li><a href="/blogs/create">Create</a></li>
-      <li><a href="<%= accountHref %>"><%= accountText %></a></li>
+      <% if (user != null) { %>
+        <li><a href="/blogs/create">Create</a></li>
+        <li><a href="/account">My Account</a></li>
+      <% } else { %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+      <% } %>
     </ul>
   </nav>
   <button class="nav-toggler" tabindex="0" id="nav-toggler">

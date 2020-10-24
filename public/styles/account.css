@@ -44,3 +44,7 @@ table.info-table, .info-table td, .info-table th {
     column-gap: 10px; 
   }
 }
+
+.reset-password {
+  font-size: 1.9rem;
+}

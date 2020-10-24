@@ -1,4 +1,16 @@
-<h1 class="page-header">My Account</h1>
+<h1 class="page-header">My Account <% if (user.verified) { %>
+  <span style="color: green; cursor: help;" title="Account verified">
+    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+  </svg>
+  </span>  
+<% } %></h1>
+
+<% if (!user.verified) { %>
+  <h3 style="background-color: rgba(255, 0, 0, .5); color: white; padding: 1rem; text-align: center;">
+    Account not verified - <button class="btn btn-danger" id="verify-button">Verify Now</button>
+  </h3>
+<% } %> 
 
 <div class="info-container">
   <div class="info">
@@ -22,9 +34,34 @@
     <a class="btn btn-primary info-button" href="/account/edit">Edit</a>
   </div>    
   <div class="info">
-    <form class="centered-flex" action="/account/logout?_method=DELETE" method="POST">
+    <form action="/account/logout?_method=DELETE" method="POST">
       <button type="submit" class="btn btn-danger logout-button">Logout</button>
+    </form>
+    <form action="/account?_method=DELETE" method="POST">
+      <button type="submit" class="btn btn-danger logout-button" id="delete-account">Delete Account</button>
     </form>
   </div>
 </div>
 
+<script>
+  const verifyButton = document.getElementById('verify-button')
+  if (verifyButton) {
+      verifyButton.addEventListener('click', function() {
+        this.classList.add('btn-success');
+        this.classList.remove('btn-danger');
+        this.innerText = 'Email Sent. Click to send again'
+        fetch('/verify/send', {
+          method: 'POST'
+        })
+    })
+}
+
+const deleteAccountButton = document.getElementById('delete-account');
+deleteAccountButton.addEventListener('click', e => {
+  const confirmDelete = confirm('Are you sure you want to delete your account PERMENANTLY?');
+  if (!confirmDelete) {
+    e.preventDefault();
+    return;
+  }
+})
+</script>
