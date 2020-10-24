@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const sendMail = require('../config/mail');
 const bcrypt = require('bcrypt');
 const { default: { isLength } } = require('validator')
+const Token = require('../models/token');
 
 const router = express.Router();
 
@@ -122,6 +123,7 @@ router.post('/reset-password', isAuthenticated, (req, res) => {
 
 router.delete('/', async (req, res) => {
   try {
+    await Token.findOneAndDelete({ for_id: req.user._id });
     await User.findByIdAndDelete(req.user._id);
     res.redirect('/');
   } catch (err) {
